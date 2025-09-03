@@ -36,6 +36,7 @@ A backend system for managing a directory of freelancers, built for the ETIQA IT
 cd frontend/react-app
 npm install
 npm start
+
 ## 📂 How to Run Locally
 
 ### 1) Clone the repository
