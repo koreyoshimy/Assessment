@@ -1,0 +1,791 @@
+/* ===== Theme Tokens (safe to tweak) ===== */
+:root {
+    --brand-bg: #0f172a; /* slate-900 */
+    --brand-fg: #ffffff;
+    --brand-accent: #2563eb; /* blue-600 */
+    --brand-accent-2: #22c55e; /* green-500 */
+    --brand-warn: #f59e0b; /* amber-500 */
+    --brand-danger: #ef4444; /* red-500 */
+    --ink-900: #0b1220;
+    --ink-700: #1f2937;
+    --ink-500: #4b5563;
+    --ink-300: #9ca3af;
+    --surface-0: #ffffff;
+    --surface-1: #f8fafc;
+    --surface-2: #eef2f7;
+    --surface-3: #e5e7eb;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --shadow: 0 8px 24px rgba(2,6,23,.1);
+}
+
+/* ===== Base ===== */
+* {
+    box-sizing: border-box
+}
+
+html {
+    scroll-behavior: smooth
+}
+
+/* Layout polish */
+body {
+    background-color: #f7f8fa;
+}
+
+
+main {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 24px
+}
+
+/* ===== Header / Global Nav ===== */
+header {
+    background: var(--brand-bg);
+    color: var(--brand-fg);
+    box-shadow: var(--shadow);
+}
+
+    header .container,
+    header nav {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 12px 24px
+    }
+
+    header a, header .nav-link {
+        color: rgba(255,255,255,.85)
+    }
+
+        header a:hover, header .nav-link:hover {
+            color: #fff
+        }
+
+.nav.nav-pills {
+    background: var(--surface-1);
+    border: 1px solid var(--surface-3);
+    border-radius: var(--radius);
+    padding: 8px;
+    gap: 6px;
+}
+
+    .nav.nav-pills .nav-link {
+        border-radius: calc(var(--radius) - 6px);
+        color: var(--ink-700);
+        font-weight: 600;
+    }
+
+        .nav.nav-pills .nav-link:hover {
+            background: var(--surface-2)
+        }
+
+        .nav.nav-pills .nav-link.active {
+            background: var(--brand-accent);
+            color: #fff;
+            box-shadow: 0 6px 16px rgba(37,99,235,.35);
+        }
+.navbar-brand {
+    font-weight: 600;
+    letter-spacing: .2px;
+}
+
+.card {
+    border: 0;
+    border-radius: 1rem;
+}
+
+.card-body {
+    padding: 1.5rem 1.5rem;
+}
+
+
+/* ===== Typographic Rhythm ===== */
+h1 {
+    font-weight: 800;
+    letter-spacing: -.02em;
+    margin: 0 0 8px
+}
+
+.lead {
+    color: var(--ink-500);
+    font-size: 1.05rem;
+    margin-bottom: 18px
+}
+
+/* ===== “Card-like” Sections on Home ===== */
+section {
+    background: var(--surface-0);
+    border: 1px solid var(--surface-3);
+    border-radius: var(--radius);
+    padding: 18px 18px 14px;
+    box-shadow: var(--shadow);
+}
+
+    section h2 {
+        margin-top: 0
+    }
+
+.row > section {
+    margin-bottom: 16px
+}
+
+/* ===== Buttons (augment Bootstrap) ===== */
+.btn {
+    border-radius: var(--radius-sm);
+    transition: transform .04s ease, box-shadow .2s ease, background-color .2s ease;
+}
+
+    .btn:active {
+        transform: translateY(1px)
+    }
+
+.btn-outline-primary:hover {
+    box-shadow: 0 6px 16px rgba(37,99,235,.25)
+}
+
+.btn-outline-success:hover {
+    box-shadow: 0 6px 16px rgba(34,197,94,.25)
+}
+
+.btn-outline-warning:hover {
+    box-shadow: 0 6px 16px rgba(245,158,11,.25)
+}
+
+.btn-outline-danger:hover {
+    box-shadow: 0 6px 16px rgba(239,68,68,.25)
+}
+
+/* ===== Forms (Create / Edit) ===== */
+.form-group {
+    margin-bottom: 14px
+}
+
+.form-label {
+    font-weight: 700;
+    color: var(--ink-700)
+}
+
+.form-control {
+    border-radius: 12px;
+    border: 1px solid var(--surface-3);
+    background: #fff;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+    .form-control:focus {
+        border-color: var(--brand-accent);
+        box-shadow: 0 0 0 .2rem rgba(37,99,235,.18);
+    }
+
+.form-help {
+    font-size: .925rem;
+}
+
+/* Form consistency */
+.form-label {
+    font-weight: 600;
+}
+
+.invalid-feedback {
+    font-size: .9rem;
+}
+
+/* Buttons */
+.btn {
+    border-radius: .75rem;
+}
+
+/* Utilities */
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
+}
+.text-danger {
+    font-size: .9rem
+}
+
+/* Grouping actions at bottom of forms */
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* ===== Tables (Manage / Archive list) ===== */
+.table {
+    background: #fff;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--surface-3);
+    box-shadow: var(--shadow);
+}
+
+    .table thead th {
+        background: var(--surface-2);
+        color: var(--ink-700);
+        border-bottom: 1px solid var(--surface-3);
+        font-weight: 700;
+    }
+
+    .table tbody tr:hover {
+        background: #f7fafc
+    }
+
+/* Status badges for Archive screens */
+.badge {
+    padding: .45rem .6rem;
+    border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: .02em;
+}
+
+.badge-archived {
+    background: rgba(245,158,11,.15);
+    color: #b45309;
+    border: 1px solid rgba(245,158,11,.35)
+}
+
+.badge-active {
+    background: rgba(34,197,94,.15);
+    color: #166534;
+    border: 1px solid rgba(34,197,94,.35)
+}
+
+/* ===== Utilities ===== */
+.mt-4 {
+    margin-top: 1.25rem !important
+}
+
+.mb-4 {
+    margin-bottom: 1.25rem !important
+}
+
+/* ===== Small-screen polish ===== */
+@media (max-width: 576px) {
+    main {
+        padding: 16px
+    }
+
+    .nav.nav-pills {
+        gap: 4px;
+        padding: 6px
+    }
+
+        .nav.nav-pills .nav-link {
+            padding: .45rem .7rem;
+            font-size: .95rem
+        }
+
+    section {
+        padding: 14px
+    }
+}
+/* ============================
+   Manage Page (scoped styling)
+   Target container: <main class="container mt-4 manage-page">
+   ============================ */
+
+/* ===== Theme Tokens ===== */
+.manage-page {
+    --brand-bg: #0f172a; /* slate-900 */
+    --brand-fg: #ffffff;
+    --brand-accent: #2563eb; /* blue-600 */
+    --brand-accent-2: #22c55e; /* green-500 */
+    --brand-warn: #f59e0b; /* amber-500 */
+    --brand-danger: #ef4444; /* red-500 */
+    --ink-900: #0b1220;
+    --ink-700: #1f2937;
+    --ink-500: #4b5563;
+    --ink-300: #9ca3af;
+    --surface-0: #ffffff;
+    --surface-1: #f8fafc;
+    --surface-2: #eef2f7;
+    --surface-3: #e5e7eb;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --shadow: 0 8px 24px rgba(2,6,23,.1);
+}
+
+/* ===== Base / Layout ===== */
+.manage-page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+    .manage-page h1 {
+        font-weight: 800;
+        letter-spacing: -.02em;
+        margin: 0 0 12px;
+    }
+
+    .manage-page .lead {
+        color: var(--ink-500);
+        font-size: 1.05rem;
+        margin-bottom: 18px;
+    }
+
+    /* ===== Section Card ===== */
+    .manage-page section {
+        background: var(--surface-0);
+        border: 1px solid var(--surface-3);
+        border-radius: var(--radius);
+        padding: 18px 18px 14px;
+        box-shadow: var(--shadow);
+    }
+
+        .manage-page section h2 {
+            margin-top: 0;
+        }
+
+    /* ===== Search + Filter Row ===== */
+    .manage-page form.row.g-2 {
+        background: var(--surface-0);
+        border: 1px solid var(--surface-3);
+        border-radius: var(--radius);
+        padding: 12px;
+        box-shadow: var(--shadow);
+    }
+
+    .manage-page .form-control,
+    .manage-page .form-select {
+        border-radius: 12px;
+        border: 1px solid var(--surface-3);
+        background: #fff;
+        transition: border-color .15s ease, box-shadow .15s ease;
+    }
+
+        .manage-page .form-control:focus,
+        .manage-page .form-select:focus {
+            border-color: var(--brand-accent);
+            box-shadow: 0 0 0 .2rem rgba(37,99,235,.18);
+        }
+
+    /* ===== Buttons ===== */
+    .manage-page .btn {
+        border-radius: var(--radius-sm);
+        transition: transform .04s ease, box-shadow .2s ease, background-color .2s ease;
+    }
+
+        .manage-page .btn:active {
+            transform: translateY(1px);
+        }
+
+    .manage-page .btn-primary:hover {
+        box-shadow: 0 6px 16px rgba(37,99,235,.25);
+    }
+
+    .manage-page .btn-warning:hover {
+        box-shadow: 0 6px 16px rgba(245,158,11,.25);
+    }
+
+    .manage-page .btn-danger:hover {
+        box-shadow: 0 6px 16px rgba(239,68,68,.25);
+    }
+
+    .manage-page .btn-sm {
+        padding: 0.35rem 0.65rem;
+        font-size: 0.85rem;
+    }
+
+    /* Improve focus ring consistency inside Manage page */
+    .manage-page .btn:focus,
+    .manage-page .btn:active:focus,
+    .manage-page .form-control:focus,
+    .manage-page .form-check-input:focus {
+        box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    }
+
+    /* ===== Table ===== */
+    .manage-page .table {
+        background: #fff;
+        border-radius: var(--radius);
+        overflow: hidden;
+        border: 1px solid var(--surface-3);
+        box-shadow: var(--shadow);
+        margin-bottom: 1rem;
+    }
+
+        .manage-page .table thead th {
+            background: var(--surface-2);
+            color: var(--ink-700);
+            border-bottom: 1px solid var(--surface-3);
+            font-weight: 700;
+            vertical-align: middle;
+        }
+
+        .manage-page .table tbody tr:hover {
+            background: var(--surface-1);
+            transition: background-color .2s ease;
+        }
+
+    .manage-page th[style], .manage-page td[style] { /* keep inline widths clean */
+        max-width: 320px;
+    }
+
+    /* ===== Status Badges ===== */
+    .manage-page .badge {
+        padding: .45rem .6rem;
+        border-radius: 999px;
+        font-weight: 700;
+        letter-spacing: .02em;
+    }
+
+    .manage-page .badge-archived {
+        background: rgba(245,158,11,.15);
+        color: #b45309;
+        border: 1px solid rgba(245,158,11,.35);
+    }
+
+    .manage-page .badge-active {
+        background: rgba(34,197,94,.15);
+        color: #166534;
+        border: 1px solid rgba(34,197,94,.35);
+    }
+
+    /* ===== Action Groups in Row ===== */
+    .manage-page td .btn + form,
+    .manage-page td form + form,
+    .manage-page td a + form {
+        margin-left: 6px;
+    }
+
+    /* ===== Pagination ===== */
+    .manage-page nav[aria-label="pagination"] {
+        display: flex;
+        justify-content: center;
+    }
+
+    .manage-page .pagination {
+        background: var(--surface-0);
+        border: 1px solid var(--surface-3);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 6px;
+    }
+
+        .manage-page .pagination .page-link {
+            border-radius: var(--radius-sm);
+            color: var(--ink-700);
+        }
+
+        .manage-page .pagination .page-item.active .page-link {
+            background-color: var(--brand-accent);
+            border-color: var(--brand-accent);
+            color: #fff;
+            box-shadow: 0 6px 16px rgba(37,99,235,.25);
+        }
+
+        .manage-page .pagination .page-item.disabled .page-link {
+            color: var(--ink-300);
+            background: var(--surface-2);
+            border-color: var(--surface-3);
+        }
+
+    /* ===== Empty State ===== */
+    .manage-page td.text-muted {
+        color: var(--ink-300) !important;
+        font-style: italic;
+    }
+
+    /* ===== Utilities ===== */
+    .manage-page .mt-4 {
+        margin-top: 1.25rem !important;
+    }
+
+    .manage-page .mb-4 {
+        margin-bottom: 1.25rem !important;
+    }
+
+/* ===== Responsive ===== */
+@media (max-width: 576px) {
+    .manage-page {
+        padding: 16px;
+    }
+
+        .manage-page form.row.g-2 {
+            padding: 10px;
+        }
+
+        .manage-page section {
+            padding: 14px;
+        }
+
+        .manage-page .table {
+            font-size: 0.95rem;
+        }
+
+        .manage-page .btn-sm {
+            padding: 0.35rem 0.55rem;
+            font-size: 0.8rem;
+        }
+
+        .manage-page .pagination {
+            padding: 4px;
+        }
+}
+/* ============================
+   Edit Freelancer Page (scoped)
+   Target: <main class="container py-4 edit-page">
+   ============================ */
+
+/* Theme tokens */
+.edit-page {
+    --brand-accent: #2563eb; /* blue-600 */
+    --brand-accent-2: #22c55e; /* green-500 */
+    --ink-900: #0b1220;
+    --ink-700: #1f2937;
+    --ink-500: #4b5563;
+    --ink-300: #9ca3af;
+    --surface-0: #ffffff;
+    --surface-1: #f8fafc;
+    --surface-2: #eef2f7;
+    --surface-3: #e5e7eb;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --shadow: 0 8px 24px rgba(2,6,23,.1);
+}
+
+    /* Page header */
+    .edit-page .h3 {
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin: 0;
+        color: var(--ink-900);
+    }
+
+    .edit-page .btn-outline-secondary {
+        border-radius: var(--radius-sm);
+    }
+
+    /* Card */
+    .edit-page .card {
+        border: 1px solid var(--surface-3);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+    }
+
+    .edit-page .card-body {
+        padding: 1.25rem 1.25rem;
+    }
+
+    /* Form controls */
+    .edit-page .form-label {
+        font-weight: 700;
+        color: var(--ink-700);
+    }
+
+    .edit-page .form-control {
+        border-radius: 12px;
+        border: 1px solid var(--surface-3);
+        background: #fff;
+        transition: border-color .15s ease, box-shadow .15s ease;
+    }
+
+        .edit-page .form-control:focus {
+            border-color: var(--brand-accent);
+            box-shadow: 0 0 0 .2rem rgba(37,99,235,.18);
+        }
+
+    /* Validation */
+    .edit-page .alert-danger {
+        border-radius: var(--radius-sm);
+    }
+
+    .edit-page .invalid-feedback {
+        display: block !important; /* ensure visibility with unobtrusive validation */
+        font-size: .925rem;
+    }
+
+    /* Help text */
+    .edit-page .form-help {
+        color: var(--ink-500);
+    }
+
+    /* Buttons */
+    .edit-page .btn {
+        border-radius: var(--radius-sm);
+        transition: transform .04s ease, box-shadow .2s ease, background-color .2s ease;
+    }
+
+        .edit-page .btn:active {
+            transform: translateY(1px);
+        }
+
+    .edit-page .btn-primary {
+        background-color: var(--brand-accent);
+        border-color: var(--brand-accent);
+    }
+
+        .edit-page .btn-primary:hover {
+            filter: brightness(0.98);
+            box-shadow: 0 6px 16px rgba(37,99,235,.25);
+        }
+
+    .edit-page .btn-outline-secondary:hover {
+        box-shadow: 0 6px 16px rgba(0,0,0,.12);
+    }
+
+    /* Focus ring normalization */
+    .edit-page .btn:focus,
+    .edit-page .btn:active:focus,
+    .edit-page .form-control:focus {
+        box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    }
+
+    /* Footer */
+    .edit-page ~ footer {
+        border-top: 1px solid var(--surface-3);
+        color: var(--ink-500);
+    }
+
+/* Responsive refinements */
+@media (max-width: 576px) {
+    .edit-page .card-body {
+        padding: 1rem;
+    }
+
+    .edit-page .btn {
+        width: 100%;
+    }
+
+    .edit-page .d-flex.gap-2 {
+        flex-direction: column;
+    }
+}
+
+/* Optional: subtle page background to lift the card */
+body {
+    background-color: #f7f8fa;
+}
+/* ============================
+   Create Freelancer Page (scoped)
+   Target: <body class="create-page">
+   ============================ */
+
+/* Theme tokens */
+.create-page {
+    --brand-accent: #2563eb; /* blue-600 */
+    --ink-900: #0b1220;
+    --ink-700: #1f2937;
+    --ink-500: #4b5563;
+    --ink-300: #9ca3af;
+    --surface-0: #ffffff;
+    --surface-1: #f8fafc;
+    --surface-2: #eef2f7;
+    --surface-3: #e5e7eb;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --shadow: 0 8px 24px rgba(2,6,23,.1);
+}
+
+/* Page background */
+.create-page {
+    background-color: #f7f8fa;
+    padding: 24px;
+}
+
+    /* Page title */
+    .create-page h1 {
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 1.5rem;
+        color: var(--ink-900);
+    }
+
+    /* Form container */
+    .create-page form {
+        background: var(--surface-0);
+        border: 1px solid var(--surface-3);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 20px;
+        max-width: 640px;
+    }
+
+    /* Labels */
+    .create-page .form-label {
+        font-weight: 700;
+        color: var(--ink-700);
+    }
+
+    /* Inputs */
+    .create-page .form-control {
+        border-radius: 12px;
+        border: 1px solid var(--surface-3);
+        background: #fff;
+        transition: border-color .15s ease, box-shadow .15s ease;
+    }
+
+        .create-page .form-control:focus {
+            border-color: var(--brand-accent);
+            box-shadow: 0 0 0 .2rem rgba(37,99,235,.18);
+        }
+
+    /* Checkboxes */
+    .create-page .form-check-input {
+        border-radius: 4px;
+    }
+
+    .create-page .form-check-label {
+        color: var(--ink-700);
+    }
+
+    /* Validation errors */
+    .create-page .text-danger {
+        font-size: .9rem;
+    }
+
+    /* Buttons */
+    .create-page .btn {
+        border-radius: var(--radius-sm);
+        transition: transform .04s ease, box-shadow .2s ease, background-color .2s ease;
+    }
+
+        .create-page .btn:active {
+            transform: translateY(1px);
+        }
+
+    .create-page .btn-primary {
+        background-color: var(--brand-accent);
+        border-color: var(--brand-accent);
+    }
+
+        .create-page .btn-primary:hover {
+            filter: brightness(0.98);
+            box-shadow: 0 6px 16px rgba(37,99,235,.25);
+        }
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .create-page {
+        padding: 16px;
+    }
+
+        .create-page form {
+            padding: 16px;
+        }
+}
+
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+    .manage-page {
+        font-size: 16px;
+    }
+    .edit-page .card-body {
+        padding: 1rem;
+    }
+    .edit-page .btn {
+        width: 100%;
+    }
+    .edit-page .d-flex.gap-2 {
+        flex-direction: column;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}

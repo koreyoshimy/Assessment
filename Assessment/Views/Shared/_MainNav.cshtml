@@ -1,0 +1,22 @@
+﻿@{
+    var currentAction = (ViewContext.RouteData.Values["action"] as string ?? "").ToLowerInvariant();
+    var currentController = (ViewContext.RouteData.Values["controller"] as string ?? "").ToLowerInvariant();
+
+    bool isActive(string controller, string action = "")
+        => currentController == controller.ToLowerInvariant() &&
+           (string.IsNullOrEmpty(action) || currentAction == action.ToLowerInvariant());
+}
+
+<nav class="nav nav-pills flex-column flex-sm-row mb-4">
+    <a class="flex-sm-fill text-sm-center nav-link @(isActive("Home", "Index") ? "active" : "")"
+       asp-controller="Home" asp-action="Index">Home</a>
+
+    <a class="flex-sm-fill text-sm-center nav-link @(isActive("Home", "Manage") ? "active" : "")"
+       asp-controller="Home" asp-action="Manage">List Freelancers</a>
+
+    <a class="flex-sm-fill text-sm-center nav-link @(isActive("Home", "Create") ? "active" : "")"
+       asp-controller="Home" asp-action="Create">Add Freelancer</a>
+
+    <a class="flex-sm-fill text-sm-center nav-link @(isActive("Home", "Archive") ? "active" : "")"
+       asp-controller="Home" asp-action="Archive">Archive/Unarchive</a>
+</nav>

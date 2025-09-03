@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Manage Freelancers";
+    Layout = "_Layout";
+}
+
+<partial name="_MainNav" />
+
+<nav class="nav nav-pills flex-column flex-sm-row mb-4">
+    <a class="flex-sm-fill text-sm-center nav-link" href="@Url.Action("Index", "Home")">Home</a>
+    <a class="flex-sm-fill text-sm-center nav-link active" href="@Url.Action("Manage", "Home")">List Freelancers</a>
+    <a class="flex-sm-fill text-sm-center nav-link" href="@Url.Action("Create", "Home")">Add Freelancer</a>
+    <a class="flex-sm-fill text-sm-center nav-link" href="@Url.Action("Archive", "Home")">Archive/Unarchive</a>
+</nav>
+
+<h1>@ViewData["Title"]</h1>
+
+<!-- Search + Filter -->
+<form method="get" class="row g-2 mb-3">
+    <div class="col-sm-6">
+        <input name="q" value="@Model.Query" class="form-control" placeholder="Search username or email..." />
+    </div>
+    <div class="col-sm-3">
+        <select name="includeArchived" class="form-select">
+            <option value="false" selected="@(Model.IncludeArchived == false)">Active only</option>
+            <option value="true" selected="@(Model.IncludeArchived == true)">Include archived</option>
+        </select>
+    </div>
+    <div class="col-sm-3">
+        <button class="btn btn-primary w-100" type="submit">Search</button>
+    </div>
+</form>
+
+<!-- List -->
+<section>
+    <h2>Registered Freelancers</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th style="width:260px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Items is not null && Model.Items.Any())
+            {
+                foreach (var freelancer in Model.Items)
+                {
+                    <tr>
+                        <td>@freelancer.Username</td>
+                        <td>@freelancer.Email</td>
+                        <td>
+                            <span class="badge @(freelancer.IsArchived ? "badge-archived" : "badge-active")">
+                                @(freelancer.IsArchived ? "Archived" : "Active")
+                            </span>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary btn-sm"
+                               asp-controller="Home" asp-action="Edit" asp-route-id="@freelancer.Id">Edit</a>
+
+                            <form asp-controller="Home" asp-action="Delete" asp-route-id="@freelancer.Id"
+                                  method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Delete this freelancer? This action is permanent.');">
+                                    Delete
+                                </button>
+                            </form>
+
+                            <form asp-controller="Home" asp-action="ToggleArchive" asp-route-id="@freelancer.Id"
+                                  method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-warning btn-sm">
+                                    @(freelancer.IsArchived ? "Unarchive" : "Archive")
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" class="text-center text-muted">No results found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
+
+<!-- Pagination -->
+<nav aria-label="pagination">
+    <ul class="pagination">
+        <li class="page-item @(Model.Page <= 1 ? "disabled" : "")">
+            <a class="page-link"
+               href="@Url.Action("Manage", new { page = Model.Page - 1, pageSize = Model.PageSize, q = Model.Query, includeArchived = Model.IncludeArchived })">
+                Prev
+            </a>
+        </li>
+        @for (var p = 1; p <= Model.TotalPages; p++)
+        {
+            <li class="page-item @(p == Model.Page ? "active" : "")">
+                <a class="page-link"
+                   href="@Url.Action("Manage", new { page = p, pageSize = Model.PageSize, q = Model.Query, includeArchived = Model.IncludeArchived })">
+                    @p
+                </a>
+            </li>
+        }
+        <li class="page-item @(Model.Page >= Model.TotalPages ? "disabled" : "")">
+            <a class="page-link"
+               href="@Url.Action("Manage", new { page = Model.Page + 1, pageSize = Model.PageSize, q = Model.Query, includeArchived = Model.IncludeArchived })">
+                Next
+            </a>
+        </li>
+    </ul>
+</nav>

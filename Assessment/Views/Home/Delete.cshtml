@@ -1,0 +1,31 @@
+﻿@page "/Home/Archive"
+@model IEnumerable<Assessment.Models.Freelancer>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancer Management</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <header>
+        @await Html.PartialAsync("_MainNav")  <!-- shared navigation -->
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <h1>Delete Freelancer</h1>
+
+        <form asp-action="Delete" asp-controller="Home" asp-route-id="@@freelancer.Id" method="post" class="d-inline">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-outline-danger btn-sm"
+                    onclick="return confirm('Delete this freelancer? This action is permanent.');">
+                Delete
+            </button>
+        </form>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿@page "/Home/Archive"
+@model IEnumerable<Assessment.Models.Freelancer>
+@* @model IEnumerable<Assessment.Models.FreelancerArchiveViewModel> *@
+@{
+    ViewBag.Title = "Archived Freelancers";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <partial name="_MainNav" />
+
+<main class="container mt-4">
+    <h2>@ViewBag.Title</h2>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var freelancer in Model)
+            {
+                <tr>
+                    <td>@freelancer.Username</td>
+                    <td>@freelancer.Email</td>
+                    <td>@(freelancer.IsArchived ? "Archived" : "Active")</td>
+                    <td>
+                        <form asp-controller="Freelancer"
+                              asp-action="ToggleArchive"
+                              method="post" style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@freelancer.Id" />
+                            <button type="submit" class="btn btn-sm @(freelancer.IsArchived ? "btn-success" : "btn-warning")">
+                                @(freelancer.IsArchived ? "Unarchive" : "Archive")
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr><td colspan="4" class="text-center">No freelancers found.</td></tr>
+        }
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

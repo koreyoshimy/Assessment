@@ -1,0 +1,89 @@
+﻿@page "/Home/Create"
+@model Assessment.Models.Freelancer
+
+@{
+    ViewData["Title"] = "Create Freelancer";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <title>@ViewBag.Title</title>
+    
+</head>
+
+<body>
+    <partial name="_MainNav" />
+    <main class="container py-4 create-page">
+<h1>Create New Freelancer</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group mb-3">
+        <label asp-for="Username" class="form-label">Username</label>
+        <input asp-for="Username" class="form-control" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Email" class="form-label">Email</label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Phone" class="form-label">Phone Number</label>
+        <input asp-for="Phone" class="form-control" />
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="SkillsetsInput" class="form-label">Skillsets</label>
+        <input asp-for="SkillsetsInput" class="form-control" placeholder="e.g. C#, SQL, JavaScript" />
+        <span asp-validation-for="SkillsetsInput" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="HobbiesInput" class="form-label">Hobbies</label>
+        <input asp-for="HobbiesInput" class="form-control" placeholder="e.g. Reading, Hiking, Coding" />
+        <span asp-validation-for="HobbiesInput" class="text-danger"></span>
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="IsArchived" class="form-check-input" />
+        <label asp-for="IsArchived" class="form-check-label">Archived</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+    </main>
+    <footer class="container py-4 text-muted small">
+        © @DateTime.Now.Year — Etiqa
+    </footer>
+
+    <!-- JS: jQuery, Bootstrap, Validation -->
+    <environment include="Production">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"
+                integrity="sha384-7S2N2f4sYk9oM2pRj0h9G6m0i9oY6n5w8nK5nYz0iQkM9f0Qm0x4YJp5vV4Hj1aI"
+                crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                crossorigin="anonymous"></script>
+    </environment>
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    </environment>
+
+    @* Client-side validation *@
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+</body>
+</html>
