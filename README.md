@@ -24,3 +24,21 @@ A backend system for managing a directory of freelancers, built for the ETIQA IT
 | `GET`   | `/api/freelancers/search?q=<term>`        | Wildcard search by username/email         |
 | `PATCH` | `/api/freelancers/{id}/archive`           | Archive freelancer                        |
 | `PATCH` | `/api/freelancers/{id}/unarchive`         | Unarchive freelancer                      |
+## 🖥️ Frontend (React.js)
+
+**Basic UI**
+- List freelancers  
+- Add / update / delete freelancer  
+- Archive / unarchive
+
+**Run locally**
+```bash
+cd frontend/react-app
+npm install
+npm start
+## 📂 How to Run Locally
+
+### 1) Clone the repository
+```bash
+git clone https://github.com/koreyoshimy/Assessment.git
+cd Assessment
