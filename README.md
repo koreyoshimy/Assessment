@@ -3,7 +3,6 @@
 A backend system for managing a directory of freelancers, built for the ETIQA IT Backend Developer Assessment (July 2025). This project follows Clean Architecture principles, uses ASP.NET Core Web API, Dapper ORM, and includes a React.js frontend for basic CRUD operations.
 
 ## 🚀 Tech Stack
-## 🚀 Tech Stack
 
 | Layer            | Technology Used                              |
 |------------------|----------------------------------------------|
