@@ -12,3 +12,15 @@ A backend system for managing a directory of freelancers, built for the ETIQA IT
 | Architecture     | Clean Architecture *(SOLID, SoC)*            |
 | Frontend (Bonus) | `React.js`                                   |
 | Testing          | `Postman`                              |
+## 🔧 API Endpoints
+
+| Method  | Endpoint                                  | Description                              |
+|--------:|-------------------------------------------|------------------------------------------|
+| `GET`   | `/api/freelancers`                        | List all freelancers                      |
+| `GET`   | `/api/freelancers/{id}`                   | Get freelancer by ID                      |
+| `POST`  | `/api/freelancers`                        | Register a new freelancer                 |
+| `PUT`   | `/api/freelancers/{id}`                   | Full update of freelancer                 |
+| `DELETE`| `/api/freelancers/{id}`                   | Delete freelancer                         |
+| `GET`   | `/api/freelancers/search?q=<term>`        | Wildcard search by username/email         |
+| `PATCH` | `/api/freelancers/{id}/archive`           | Archive freelancer                        |
+| `PATCH` | `/api/freelancers/{id}/unarchive`         | Unarchive freelancer                      |
